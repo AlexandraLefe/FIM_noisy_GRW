@@ -3,8 +3,8 @@ title: "FIM-noisy-GRW"
 header-includes:
    \usepackage{bbm}
 output: 
-  html_document
-  # github_document
+  # html_document
+  github_document
   # md_document:
   #   variant: markdown_github
 editor_options: 
