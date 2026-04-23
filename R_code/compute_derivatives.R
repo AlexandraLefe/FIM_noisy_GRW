@@ -13,7 +13,7 @@
 #' @return post.x (if post.x=TRUE as input): the list of 
 # M: a list of same length as data. Each slot contains the vector of mean of the latent states
 # S2: a list of same length as data. Each slot contains the vector of variance of the latent states
-grw_der = function(param, data, Hess = TRUE, post.x = FALSE) {
+grw_der = function(param, data, alpha, Hess = TRUE, post.x = FALSE) {
   
   # initialization of the results
   res.loglik = 0
@@ -221,8 +221,8 @@ grw_der = function(param, data, Hess = TRUE, post.x = FALSE) {
                       (P^2*Moments[4,] + 2*P*Q*Moments[3,] + (Q^2 + R2)*Moments[2,])) * aux.e[2]
   }
   
-  res = list(loglik = res.loglik, score = c(res.grad)) # grad = c() for converting array to vector
-  if(Hess) res$Hess = matrix(c(H11,H21,H21,H22), nrow=2)
+  res = list(loglik = res.loglik, Score = c(res.grad)) # grad = c() for converting array to vector
+  if(Hess) res$Hessian = matrix(c(H11,H21,H21,H22), nrow=2)
   if(post.x) res$post.x = x
   return(res)
 }
